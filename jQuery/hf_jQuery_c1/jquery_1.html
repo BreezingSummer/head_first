@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First jQuery</title>
+    <style>
+        #change_me{
+            position: absolute;
+            top: 300px;
+            left: 40px;
+        }
+    </style>
+    <script src="../jQuery_V3.3.1.js">
+    </script>
+</head>
+<body>
+    <button id="move_up">Move up</button>
+    <button id="move_down">Move down</button>
+    <button id="color">Change color</button>
+    <button id="disappear">Disappear/Re-appear</button>
+
+    <div id="change_me">Make Me Do Stuffs</div>
+    <script>
+        $(document).ready(
+            function(){
+                $("#move_up").click(
+                    function(){
+                        $("#change_me").animate({top:30},200);
+                    }
+                );
+
+                $("#move_down").click(
+                    function(){
+                        $("#change_me").animate({top:500},2000);
+                    }
+                );
+
+                $("#color").click(
+                    function(){
+                        $("#change_me").css("color","red");
+                    }
+                );
+
+                $("#disappear").click(
+                    function(){
+                        $("#change_me").toggle("slow");
+                    }
+                );
+            }
+        );
+    </script>
+</body>
+</html>
