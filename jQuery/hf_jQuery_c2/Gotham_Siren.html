@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gotham Siren Discount</title>
+    <style>
+        header{
+            width: 100%;
+            border: 0px;
+            height: 50px;
+        }
+
+        div{
+            float: left;
+            background-color: grey;
+            text-align: left;
+            border: solid #000 3px;
+            height: 540px;
+        }
+
+        main div img{
+            width: 250px;
+            height:400px;
+            margin: 10px;
+        }
+
+        main #harley img{
+            width: 280px;
+        } 
+
+        main #siren img{
+            width: 600px;
+        }
+
+        main div>h2{
+            text-align: center;
+        }
+
+        main di>p{
+            font-size: 0.7em;
+        }
+    </style>
+    <script src="../jQuery_V3.3.1.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Want A Discount?What`s Your Favourite Siren?</h1>
+    </header>
+    <main>
+        <div id="ivy">
+            <img src="./imgs/poison_ivy.jpg">
+            <h2>Ivy Discount!!</h2>
+        </div>
+        <div id="cat">
+            <img src="./imgs/cat_2.jpg">
+            <h2>Cat Discount!!</h2>
+        </div>
+        <div id="harley">
+            <img src="./imgs/harley_1.jpg">
+            <h2>Harley Discount!!</h2>
+        </div>
+        <div id="siren">
+            <img src="./imgs/gotham_siren.jpg">
+            <h2>Siren Discount!!</h2>
+        </div>
+    </main>
+    <script>
+        function discount(x){
+            var disNum=Math.ceil(Math.random()*x);
+            var dis=disNum+"0 percent OFF!!!";
+            if(disNum===x){
+                dis="Oops!Try Again~";
+            }
+            return dis;
+        }
+
+        $(document).ready(function(){
+            $("#ivy").click(function(){
+                var discount_msg="<p>"+discount(10)+"</p>";
+                $("#ivy p").remove();
+                $("#ivy h2").append(discount_msg);
+            });
+
+            $("#cat").click(function(){
+                var discount_msg="<p>"+discount(10)+"</p>";
+                $("#cat p").remove();
+                $("#cat h2").append(discount_msg);
+            });
+
+            $("#harley").click(function(){
+                var discount_msg="<p>"+discount(10)+"</p>";
+                $("#harley p").remove();
+                $("#harley h2").append(discount_msg);
+            });
+
+            $("#siren").click(function(){
+                var discount_msg="<p>"+discount(10)+"</p>";
+                $("#siren p").remove();
+                $("#siren h2").append(discount_msg);
+            });
+        });
+    </script>
+</body>
+</html>
