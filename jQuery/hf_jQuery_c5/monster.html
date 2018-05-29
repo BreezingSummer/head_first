@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Monster</title>
+    <link rel="stylesheet" href="./monster.css">
+    <script src="../jQuery_V3.3.1.js"></script>
+</head>
+<body>
+    <img class="lightning" id="lightning-01" src="./imgs/lightning-01.jpg">
+    <img class="lightning" id="lightning-02" src="./imgs/lightning-02.jpg">
+    <img class="lightning" id="lightning-03" src="./imgs/lightning-03.jpg">
+    <header>
+        <img id="banner" src="./imgs/banner.png">
+    </header>
+    <main id="frame">
+        <div id="faceContainer">
+            <div id="head" class="face"><img src="./imgs/headsstrip.jpg" alt=""></div>
+            <div id="eye" class="face"><img src="./imgs/eyesstrip.jpg" alt=""></div>
+            <div id="nose" class="face"><img src="./imgs/nosesstrip.jpg" alt=""></div>
+            <div id="mouth" class="face"><img src="./imgs/mouthsstrip.jpg" alt=""></div>
+        </div>
+    </main>
+</body>
+<script>
+    function slideFace(part){
+        var clicktime=0;
+        $("#"+part).click(function(){
+            clicktime+=1;
+            if(clicktime<10){
+                $(this).animate({left:"-=367"},500);
+            }else{
+                $(this).animate({left:"0"},1000);
+                clicktime=0;
+            }
+        });
+    }
+
+    function lightningFlash(lightning){
+        $("#"+lightning).fadeIn(1000).fadeOut(2000);
+    }
+
+    $(document).ready(function(){
+        slideFace("head");
+        slideFace("eye");
+        slideFace("nose");
+        slideFace("mouth");
+
+        setInterval('lightningFlash("lightning-01")',2000)
+        setInterval('lightningFlash("lightning-02")',2000)
+        setInterval('lightningFlash("lightning-03")',5000)
+    });
+</script>
+</html>
