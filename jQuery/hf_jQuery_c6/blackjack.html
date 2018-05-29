@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="./blackjack.css">
+    <script src="../jQuery_V3.3.1.js"></script>
+</head>
+<body>
+    <h1>Wanna Play Blackjack~~?</h1>
+    <button>Rematch</button>
+    <p id="presentScore">Good Luck!</p>
+    <div id="cardArea"></div>
+    <img id="start" src="./imgs/deck_small.jpg">
+</body>
+<script>
+    var deckfault={
+        Clubs:["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Jack","Queen","King"],
+        Diamonds:["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Jack","Queen","King"],
+        Hearts:["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Jack","Queen","King"],
+        Spades:["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Jack","Queen","King"],
+    }
+    
+    var deck=deckfault;
+    var kindArray=["Clubs","Diamonds","Hearts","Spades"];
+
+    // $("#cardArea").append("<img>");
+    var firstTime=true;
+    $("#start").click(function(){
+        if(firstTime){
+            showCard();
+            showCard();
+            firstTime=false;
+        }else if(totalTime<5){
+            showCard();
+        }
+    });
+
+    function showCard(){
+        var kind=kindArray[Math.floor(Math.random()*4)];
+        var number=Math.floor(Math.random()*(deck[kind].length));
+        var card=deck[kind][number];
+        var totalscore;
+        // alert(card)
+        $("<img>").appendTo("#cardArea")
+                .attr("src","./imgs/cards/"+kind+"/"+card+".jpg");
+        $("#presentScore").html("Total Scores: "+(number+1));
+        delete deck[kind].splice(number,1);
+    }
+</script>
+</html>
