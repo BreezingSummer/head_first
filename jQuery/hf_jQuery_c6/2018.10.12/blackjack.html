@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="./blackjack.css">
+    <script src="../../jQuery_V3.3.1.js"></script>
+</head>
+<body>
+    <h1>Wanna Play Blackjack~~?</h1>
+    <button>Rematch</button>
+    <p id="presentScore">Good Luck!</p>
+    <div id="cardArea">
+        <img id="result" src="./imgs/x2.png">
+    </div>
+    <img id="start" src="./imgs/deck_small.jpg">
+</body>
+<script>
+    var deckfault={
+        Clubs:["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"],
+        Diamonds:["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"],
+        Hearts:["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"],
+        Spades:["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"],
+    }
+    
+    var deck=JSON.parse(JSON.stringify(deckfault));
+    var totalscore=0,totalTime;
+    var kindArray=["Clubs","Diamonds","Hearts","Spades"];
+
+    // $("#cardArea").append("<img>");
+    var firstTime=true;
+    $("#start").click(function(){
+        // console.log(deck.Clubs.length);
+        if(firstTime){
+            showCard();
+            showCard();
+            winorlose();
+            totalTime = 2;
+            firstTime = false;
+        }else if(totalTime < 5){
+            showCard();
+            winorlose();
+            totalTime += 1;
+        }
+    });
+
+    function showCard(){
+        var kind=kindArray[Math.floor(Math.random()*4)];
+        // console.log(kind);
+        var selected=Math.floor(Math.random()*(deck[kind].length));
+        var card=deck[kind][selected];
+        // console.log(card)
+        var number = $.inArray(card,deckfault[kind]) + 1;
+        // console.log(number);
+        // console.log(deckfault)
+        // console.log(deck)
+        totalscore += number;
+        // alert(card)
+        $("<img>").appendTo("#cardArea")
+                  .attr("src","./imgs/cards/"+kind+"/"+card+".jpg");
+        $("#presentScore").html("Total Scores: "+totalscore);
+        delete deck[kind].splice(number,1);
+    }
+
+    function winorlose(){
+        if(totalscore > 21){
+            $("#result").css("display","block");
+            $("presentScore").html("Oops!Bust!You lost!");
+        }else if(totalscore <= 21 && totalTime === 5){
+            $("#result").attr("src","./imgs/check.png")
+            $("presentScore").html("You win!");
+        }
+    }
+</script>
+</html>

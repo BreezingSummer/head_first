@@ -1,0 +1,12 @@
+#cardArea{
+    width: 840px;
+    height: 250px;
+    border: 1px solid grey;
+}
+
+#result{
+    display: none;
+    position: fixed;
+    width: 840px;
+    height: 250px;
+}
